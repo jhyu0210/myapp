@@ -10,7 +10,7 @@ import {
 import { Button } from "./ui/button";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { signOut } from "next-auth/react";
+// import { signOut } from "next-auth/react";
 import SignOutButton from "./SignOutButton";
 // import { getServerAuthSession } from "@/server/auth";
 
