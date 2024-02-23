@@ -9,6 +9,7 @@ const EmailSignInForm = () => {
   const [email, setEmail] = useState<null | string>(null);
 
   const SignInWithEmail = async () => {
+
     const signinResult = await signIn("email", {
       email: email,
       callbackUrl: `${window.location.origin}`,

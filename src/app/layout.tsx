@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import { NextAuthProvider } from "@/components/NextAuthProvider";
 // import { NextAuthProvider } from "@/components/NextAuthProvider";
 import { Toaster } from "@/components/ui/toaster";
 import "@/styles/globals.css";
@@ -24,11 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
-        {/* <NextAuthProvider> */}
-        <Navbar />
-        {children}
-        <Toaster />
-        {/* </NextAuthProvider> */}
+        <NextAuthProvider>
+          <Navbar />
+          {children}
+          <Toaster />
+        </NextAuthProvider>
       </body>
     </html>
   );

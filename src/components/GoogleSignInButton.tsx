@@ -19,7 +19,7 @@ const GoogleSignInButton = () => {
           alt="google-icon"
           height={24}
           width={24}
-        />{" "}
+        />
         Google Signin
       </Button>
     </div>

@@ -4,6 +4,7 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
+// import type NextAuthConfig from "next-auth";
 import googleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 
