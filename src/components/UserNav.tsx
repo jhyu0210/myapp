@@ -11,7 +11,7 @@ import { Button } from "./ui/button";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 // import { signOut } from "next-auth/react";
-import SignOutButton from "./SignOutButton";
+// import SignOutButton from "./SignOutButton";
 import { signOut } from "next-auth/react";
 
 const UserNav = ({ user }: any) => {
