@@ -20,14 +20,16 @@ interface linkProps {
 
 const links: linkProps[] = [
   { name: "Home", href: "/" },
-  { name: "Tv Shows", href: "/home/shows" },
-  { name: "Movies", href: "/home/movies" },
-  { name: "Recently Added", href: "/home/recently" },
-  { name: "My List", href: "/home/user/list" },
+  { name: "Tv Shows", href: "/shows" },
+  { name: "Movies", href: "/movies" },
+  { name: "Recently Added", href: "/recently" },
+  { name: "My List", href: "/user/list" },
+  { name: "Admin Page", href: "/admin" },
 ];
 
 export default function Navbar() {
   const session = useSession();
+  const user = session.data?.user;
   const pathName = usePathname();
   return (
     <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-5 sm:px-6 lg:px-8">
@@ -67,7 +69,7 @@ export default function Navbar() {
       <div className="flex items-center gap-x-8">
         <Search className="h-5 w-5 cursor-pointer text-gray-300" />
         <Bell className="h-5 w-5 cursor-pointer text-gray-300" />
-        {session ? <UserNav /> : ""}
+        {user ? <UserNav user={user} /> : ""}
       </div>
     </div>
   );

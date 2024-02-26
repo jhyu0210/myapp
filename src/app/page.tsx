@@ -14,11 +14,15 @@ const getPosts = async () => {
       },
     },
   });
+  console.log(posts);
   return posts;
 };
 
 export default async function Home() {
   const session = await getServerAuthSession();
+  // if (!session) {
+  //   return redirect("/auth");
+  // }
 
   // console.log("session::::: ", session?.user);
   const feed = await getPosts();
@@ -26,12 +30,6 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      {/* <Image
-          alt="loggedinUser"
-          src={session.user.image!}
-          height={24}
-          width={24}
-        /> */}
       {session ? (
         <>
           <h1>You are logged In..</h1>

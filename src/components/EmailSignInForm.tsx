@@ -16,7 +16,7 @@ const EmailSignInForm = () => {
     });
     if (!signinResult?.ok) {
       return toast({
-        title: "this didd not work",
+        title: "this did not work",
         description: "Something went worng, try again",
         variant: "destructive",
       });

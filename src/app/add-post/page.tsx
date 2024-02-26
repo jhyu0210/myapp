@@ -1,4 +1,5 @@
 "use client";
+import { useSession } from "next-auth/react";
 // import { headers } from "next/headers";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -8,6 +9,8 @@ const AddPost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const router = useRouter();
+  const { data } = useSession();
+  const authorId = data?.user.id;
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
