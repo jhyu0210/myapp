@@ -9,7 +9,7 @@ type PostRequestBody = {
 
 export async function POST(request: Request) {
   const res = (await request.json()) as PostRequestBody;
-  console.log(res);
+  // console.log(res);
   const { title, content } = res;
   const result = await db.post.create({
     data: {

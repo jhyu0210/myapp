@@ -11,10 +11,11 @@ const AddPost = () => {
   const router = useRouter();
   const { data } = useSession();
   const authorId = data?.user.id;
+  console.log("Author Id for this post:::", authorId);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Submitted:", { title, content });
+    // console.log("Submitted:", { title, content });
 
     try {
       await fetch("/api/add-post", {

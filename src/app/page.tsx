@@ -2,7 +2,7 @@ import Link from "next/link";
 import Postcard from "@/components/Postcard";
 import db from "@/server/db";
 import { getServerAuthSession } from "@/server/auth";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 import Image from "next/image";
 
 const getPosts = async () => {
@@ -14,7 +14,7 @@ const getPosts = async () => {
       },
     },
   });
-  console.log(posts);
+  // console.log(posts);
   return posts;
 };
 

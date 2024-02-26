@@ -17,11 +17,12 @@ import { NextResponse } from "next/server";
 // });
 export default withAuth(
   function middleware(req) {
-    console.log(req.nextUrl.pathname);
-    console.log(req.nextauth.token?.role);
+    // console.log(req.nextUrl.pathname);
+    // console.log("middleware role:::", req.nextauth.token?.role);
     if (
       req.nextUrl.pathname.startsWith("/admin") &&
-      req.nextauth.token?.role !== "admin"
+      req.nextauth.token?.role !== "admin" &&
+      req.nextauth.token?.email !== process.env.SUPER_USER_EMAIL
     ) {
       return NextResponse.rewrite(new URL("/denied", req.url));
     }
@@ -32,4 +33,4 @@ export default withAuth(
     },
   },
 );
-export const config = { matcher: ["/admin:path*", "/user:path*"] };
+export const config = { matcher: ["/admin/:path*", "/user/:path*"] };

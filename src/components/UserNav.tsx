@@ -29,7 +29,7 @@ const UserNav = ({ user }: UserNavProps) => {
   // const session = useSession();
   if (!user) return;
   // const user = session.data?.user;
-  console.log(user);
+  // console.log(user);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

@@ -1,6 +1,6 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { getServerSession, type NextAuthOptions } from "next-auth";
-import googleProvider from "next-auth/providers/google";
+import googleProvider, { type GoogleProfile } from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 
 import { env } from "@/env";
@@ -59,12 +59,14 @@ export const authOptions: NextAuthOptions = {
     googleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
-      profile(profile) {
+      // todo::: define type of profile
+      profile(profile: GoogleProfile) {
+        console.log("Google Profile::::", profile);
         return {
           id: profile.sub,
           name: `${profile.given_name} ${profile.family_name}`,
           email: profile.email,
-          role: profile.role ? profile.role : "user",
+          role: (profile.role ? profile.role : "user") as string,
           image: profile.picture,
         };
       },

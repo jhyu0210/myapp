@@ -7,7 +7,9 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleDetection": "force",
+    // no
     "isolatedModules": true,
+    // no
 
     /* Strictness */
     "strict": true,
