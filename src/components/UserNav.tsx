@@ -34,7 +34,7 @@ const UserNav = ({ user }: UserNavProps) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-6 w-6 rounded">
-          <Avatar className="h-6 w-6 rounded">
+          <Avatar className="h-6 w-6 rounded-full">
             <AvatarImage src={user.image ? user.image : ""} />
             <AvatarFallback className="rounded-sm">
               {user.email?.slice(0, 2)}

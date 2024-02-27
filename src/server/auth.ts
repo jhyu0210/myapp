@@ -1,10 +1,12 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { getServerSession, type NextAuthOptions } from "next-auth";
 import googleProvider, { type GoogleProfile } from "next-auth/providers/google";
-import EmailProvider from "next-auth/providers/email";
+// import EmailProvider from "next-auth/providers/email";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 import { env } from "@/env";
 import db from "@/server/db";
+import * as bcrypt from "bcrypt";
 // import { User } from "@prisma/client";
 // // import { JWT } from "next-auth/jwt";
 
@@ -34,7 +36,7 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   pages: {
-    signIn: "/auth",
+    signIn: "/auth/signin",
   },
   // callbacks: {
   //   session: ({ session, user }) => ({
@@ -57,6 +59,7 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   providers: [
     googleProvider({
+      name: "google",
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
       // todo::: define type of profile
@@ -71,16 +74,55 @@ export const authOptions: NextAuthOptions = {
         };
       },
     }),
-    EmailProvider({
-      server: {
-        host: process.env.SMTP_HOST,
-        port: process.env.SMTP_PORT,
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASSWORD,
+    // EmailProvider({
+    //   server: {
+    //     host: process.env.SMTP_HOST,
+    //     port: process.env.SMTP_PORT,
+    //     auth: {
+    //       user: process.env.SMTP_USER,
+    //       pass: process.env.SMTP_PASSWORD,
+    //     },
+    //   },
+    //   from: process.env.EMAIL_FROM,
+    // }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: {
+          label: "email:",
+          type: "text",
+          placeholder: "your-email",
+        },
+        password: {
+          label: "password:",
+          type: "password",
+          placeholder: "your-password",
         },
       },
-      from: process.env.EMAIL_FROM,
+      async authorize(credentials) {
+        // console.log("authorizing credentials", credentials);
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+        const foundUser = await db.user.findUnique({
+          where: { email: credentials?.email },
+        });
+        if (!foundUser) {
+          return null;
+        }
+        const passwordMatch = await bcrypt.compare(
+          credentials.password,
+          foundUser.password!,
+        );
+        // console.log("password Match:::", passwordMatch);
+        if (!passwordMatch) {
+          return null;
+        }
+        return {
+          id: foundUser.id,
+          email: foundUser.email,
+        };
+      },
     }),
   ],
 } satisfies NextAuthOptions;

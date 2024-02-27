@@ -6,8 +6,9 @@ import Image from "next/image";
 
 const GoogleSignInButton = () => {
   return (
-    <div className="text-white">
+    <div className=" text-white">
       <Button
+        className="w-full"
         onClick={() =>
           signIn("google", {
             callbackUrl: `${window.location.origin}`,

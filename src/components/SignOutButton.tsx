@@ -9,7 +9,7 @@ const SignOutButton = () => {
       variant="ghost"
       onClick={() =>
         signOut({
-          callbackUrl: `${window.location.origin}/auth`,
+          callbackUrl: `${window.location.origin}`,
         })
       }
     >

@@ -9,13 +9,13 @@ declare module "next-auth/jwt" {
   type JWT = User;
 }
 
-declare module "google-profile" {
-  type GoogleProfile = {
-    sub: string;
-    given_name: string;
-    amily_name: string;
-    email: string;
-    role?: "user";
-    picture: string;
-  };
-}
+// declare module "google-profile" {
+//   type GoogleProfile = {
+//     sub: string;
+//     given_name: string;
+//     amily_name: string;
+//     email: string;
+//     role?: "user";
+//     picture: string;
+//   };
+// }

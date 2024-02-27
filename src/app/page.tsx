@@ -32,13 +32,15 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       {session ? (
         <>
-          <h1>You are logged In..</h1>
-          <Image
-            alt="loggedinUser"
-            src={session.user.image!}
-            height={24}
-            width={24}
-          />
+          <h1>You are logged In. ${session.user.email}..</h1>
+          {session.user.image && (
+            <Image
+              alt="loggedinUser"
+              src={session.user.image}
+              height={24}
+              width={24}
+            />
+          )}
           <Link
             href="/add-post"
             className="border border-slate-400 bg-gray-100 px-4 py-2"

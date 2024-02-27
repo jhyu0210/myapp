@@ -1,11 +1,12 @@
-import EmailSignInForm from "@/components/EmailSignInForm";
-// import EmailSignInButton from "@/components/EmailSignInForm";
-import GoogleSignInButton from "@/components/GoogleSignInButton";
+// import EmailSignInForm from "@/components/EmailSignInForm";
+// import CredentialsLoginForm from "@/components/CredentialsLoginForm";
+// import GoogleSignInButton from "@/components/GoogleSignInButton";
 import { getServerAuthSession } from "@/server/auth";
 import { redirect } from "next/navigation";
 import React from "react";
+import CredentialsSignupForm from "@/components/CredentialsSignupForm";
 
-const AuthPage = async () => {
+const SignupPage = async () => {
   const session = await getServerAuthSession();
 
   if (session) {
@@ -39,13 +40,14 @@ const AuthPage = async () => {
           </Link>
     </div>*/}
 
-      <div className="mt-6 flex w-full items-center justify-center gap-x-3 text-white">
+      <div className="mt-6 flex w-full flex-col items-center justify-center gap-x-3 text-white">
         {/* <GithubSignInButton /> */}
-        <EmailSignInForm />
-        <GoogleSignInButton />
+        {/* <EmailSignInForm />
+        <GoogleSignInButton /> */}
+        <CredentialsSignupForm />
       </div>
     </div>
   );
 };
 
-export default AuthPage;
+export default SignupPage;
