@@ -1,68 +1,50 @@
-import Link from "next/link";
-import Postcard from "@/components/Postcard";
-import db from "@/server/db";
+import Cart from "@/components/Cart";
+import Product from "@/components/Product";
 import { getServerAuthSession } from "@/server/auth";
 // import { redirect } from "next/navigation";
 import Image from "next/image";
 
-const getPosts = async () => {
-  const posts = await db.post.findMany({
-    where: { published: true },
-    include: {
-      author: {
-        select: { name: true },
-      },
-    },
-  });
-  // console.log(posts);
-  return posts;
-};
-
+const products: Product[] = [
+  {
+    id: "1",
+    name: "GoPro",
+    price: 57,
+    quantity: 0,
+  },
+  {
+    id: "2",
+    name: "Tripod",
+    price: 7.99,
+    quantity: 0,
+  },
+  {
+    id: "3",
+    name: "Bag",
+    price: 4.99,
+    quantity: 0,
+  },
+];
 export default async function Home() {
-  const session = await getServerAuthSession();
-  // if (!session) {
-  //   return redirect("/auth");
-  // }
+  // const session = await getServerAuthSession();
+  // // if (!session) {
+  // //   return redirect("/auth");
+  // // }
 
-  // console.log("session::::: ", session?.user);
-  const feed = await getPosts();
+  // // console.log("session::::: ", session?.user);
+  // const feed = await getPosts();
   // console.log("Get Posts:::::", feed);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      {session ? (
-        <>
-          <h1>You are logged In. ${session.user.email}..</h1>
-          {session.user.image && (
-            <Image
-              alt="loggedinUser"
-              src={session.user.image}
-              height={24}
-              width={24}
-            />
-          )}
-          <Link
-            href="/add-post"
-            className="border border-slate-400 bg-gray-100 px-4 py-2"
-          >
-            Add Post
-          </Link>
-        </>
-      ) : null}
-
-      <h1>Feed</h1>
-      {feed
-        ? feed.map((post) => (
-            <div className="grid-cols-3 gap-2 p-2" key={post.id}>
-              <Postcard
-                id={post.id}
-                title={post.title}
-                content={post.content}
-                authorName={post.author?.name}
-              />
-            </div>
-          ))
-        : null}
+    <main className="flex min-h-screen  flex-col items-center justify-between p-24">
+     <div className="flex flex-col gap-8">
+        <h1 className="text-3xl">E-Commerce Cart System</h1>
+        <div className="grid grid-cols-3 gap-4">
+          {products.map((product) => (
+            <Product key={product.id} product={product} />
+          ))}
+        </div>
+        <Cart />
+      </div>
     </main>
   );
 }

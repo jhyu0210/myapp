@@ -53,6 +53,7 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       session.user.role = token.role;
+      session.user.id = token.id; // added for authorId
       return session;
     },
   },

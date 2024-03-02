@@ -9,6 +9,7 @@ const config = {
   images: {
     remotePatterns: [
       { hostname: "lh3.googleusercontent.com", protocol: "https" },
+      { hostname: "st4.depositphotos.com", protocol: "https" },
     ],
   },
 };

@@ -9,6 +9,13 @@ declare module "next-auth/jwt" {
   type JWT = User;
 }
 
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
 // declare module "google-profile" {
 //   type GoogleProfile = {
 //     sub: string;

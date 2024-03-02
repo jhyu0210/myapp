@@ -10,6 +10,8 @@ const AddPost = () => {
   const [content, setContent] = useState("");
   const router = useRouter();
   const { data } = useSession();
+  console.log("Data UseSession [add-post]:::", data?.user);
+
   const authorId = data?.user.id;
   console.log("Author Id for this post:::", authorId);
 
@@ -18,12 +20,12 @@ const AddPost = () => {
     // console.log("Submitted:", { title, content });
 
     try {
-      await fetch("/api/add-post", {
+      await fetch("/api/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title, content }),
+        body: JSON.stringify({ title, content, authorId }),
       });
       router.refresh();
     } catch (error) {

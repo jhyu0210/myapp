@@ -20,7 +20,7 @@ interface linkProps {
 
 const links: linkProps[] = [
   { name: "Home", href: "/" },
-  { name: "Tv Shows", href: "/shows" },
+  { name: "Posts", href: "/posts" },
   { name: "Movies", href: "/movies" },
   { name: "Recently Added", href: "/recently" },
   { name: "My List", href: "/user/list" },
@@ -69,6 +69,8 @@ export default function Navbar() {
       <div className="flex items-center gap-x-8">
         <Search className="h-5 w-5 cursor-pointer text-gray-300" />
         <Bell className="h-5 w-5 cursor-pointer text-gray-300" />
+        <Link href="/api/auth/signin">Login</Link>
+
         {user ? <UserNav user={user} /> : ""}
       </div>
     </div>

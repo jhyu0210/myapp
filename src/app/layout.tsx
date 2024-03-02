@@ -1,3 +1,5 @@
+import { CartProvider } from "@/components/CartContext";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Navbar from "@/components/Navbar";
 import { NextAuthProvider } from "@/components/NextAuthProvider";
 // import { NextAuthProvider } from "@/components/NextAuthProvider";
@@ -25,11 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
-        <NextAuthProvider>
-          <Navbar />
-          {children}
-          <Toaster />
-        </NextAuthProvider>
+        <CartProvider>
+          <NextAuthProvider>
+            <Navbar />
+            <MaxWidthWrapper>{children}</MaxWidthWrapper>
+            <Toaster />
+          </NextAuthProvider>
+        </CartProvider>
       </body>
     </html>
   );

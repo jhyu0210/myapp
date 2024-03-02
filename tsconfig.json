@@ -13,7 +13,7 @@
 
     /* Strictness */
     "strict": true,
-    "noUncheckedIndexedAccess": true,
+    // "noUncheckedIndexedAccess": true,//affects cartcontext type
     "checkJs": true,
 
     /* Bundled projects */
@@ -42,3 +42,41 @@
   ],
   "exclude": ["node_modules"]
 }
+// {
+//   "compilerOptions": {
+//     "target": "es5",
+//     "lib": ["dom", "dom.iterable", "esnext"],
+//     "allowJs": true,
+//     "skipLibCheck": true,
+//     "strict": true,
+//     "noEmit": true,
+//     "esModuleInterop": true,
+//     "module": "esnext",
+//     "moduleResolution": "bundler",
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "jsx": "preserve",
+//     "incremental": true,
+//     "plugins": [
+//       {
+//         "name": "next"
+//       }
+//     ],
+//     "baseUrl": ".",
+//     "paths": {
+//       "@/*": ["./src/*"]
+//     }
+//   },
+//   "include": [
+//     // ".eslintrc.cjs",
+//     "next-env.d.ts",
+//     "**/*.ts",
+//     "**/*.tsx",
+//     "**/*.cjs",
+//     "**/*.js",
+//     ".next/types/**/*.ts"
+//   ],
+//   "exclude": ["node_modules"]
+
+
+// }
